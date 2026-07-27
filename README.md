@@ -19,7 +19,4 @@ An intelligent, agentic resume builder that leverages cutting-edge LLMs and real
 ## 🚀 Getting Started
 
 ### Prerequisites
-Make sure you have Python installed, then clone the repository:
-```bash
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git)
-cd YOUR_REPO_NAME
+Make sure you have Python installed, then clone the repository
