@@ -83,7 +83,7 @@ def prompt_reader():
 prompt = """I want complete Professional
 Resume with Dynamic Design using Advanced CSS and JS
 and must show user input details
-System instructions: Only Give HTML code as output"""
+System instructions: Only Give HTML code as output use dark theme and use image.jpeg for image"""
 
 final_prompt = prompt + prompt_reader()
 
