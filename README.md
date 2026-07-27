@@ -1,5 +1,3 @@
-# Resume-Generator-Agent
-
 # AI Resume Generator 📄🤖
 
 An intelligent, agentic resume builder that leverages cutting-edge LLMs and real-time web search to create stunning, professional resumes tailored to modern job descriptions. Built with **Streamlit**, **LangChain**, and **LangGraph/LangChain Agents**.
