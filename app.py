@@ -15,7 +15,8 @@ import streamlit as st
 
 
 #==============ForntEnd==============
-st.title("AI Resume Generator")
+st.title("AI Resume Generator & Automatic Job Searching")
+st.image("AIAgent.png")
 
 GOOGLE_API_KEY =st.sidebar.text_input("Google API Key",type='password')
 GROQ_API_KEY =st.sidebar.text_input("GROQ API Key",type='password')
