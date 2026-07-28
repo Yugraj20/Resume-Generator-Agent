@@ -12,6 +12,7 @@ from langchain.messages import SystemMessage, HumanMessage
 from langchain.agents import create_agent
 import streamlit as st
 from PIL import Image
+import base64
 
 
 #==============ForntEnd==============
@@ -83,10 +84,13 @@ def prompt_reader():
         prompt = f.read()
     return prompt
 
-prompt = """I want complete Professional
-Resume with Dynamic Design using Advanced CSS and JS
-and must show user input details
-System instructions: Only Give HTML code as output use dark theme"""
+prompt = """you are a helpful ai assistant  with a job resume maker , 
+your task is to give html gormat resume ,with a proper designing using recent html js css code , with professional degsine format ,
+user will upload data and return html format resume make it diffrent colour scheme andthe resume should project m skill set  also make it look like professional , 
+create side margins table also make the text gradient for heddings like professional summary
+IMPORTANT: wherever the profile photo goes in the resume, output exactly this tag and nothing else:
+<img src="PROFILE_IMAGE_PLACEHOLDER" style="width:100px;height:100px;border-radius:50%;">
+do not draw or generate any other image tag or placeholder circle yourself"""
 
 final_prompt = prompt + prompt_reader()
 #================================Image Uploader================================
@@ -117,14 +121,31 @@ if FILE is not None:
             
 # Change this when required new resume by user, pass details
 
-user_info = st.text_input("Give Your Information : ")
-user_photo = st.sidebar.file_uploader("Upload Pic", type='image/jpeg')
-user_query = f"""Give Resume for Python Developer.
+user_info = st.text_area("Give Your Information : ")
+user_query = f"""Give Resume for
     user details : {user_info}
-    use user profile image from given {user_photo}"""
+    DEFAULT IF NOT GIVEN : Python Developer RESUME"""
 
 final_query = final_prompt + user_query
+OPTIONS = ["DELHI","NOIDA","GURGAON/GURUGRAM",
+          'KANPUR','LUCKNOW','BANGLORE','PUNE']
+           
+LOCATION = st.sidebar.multiselect('SELECT LOCATION: ',
+                                    options = OPTIONS )
 
+JOB_PROFILE = ["PYTHON DEVELOPER",'GEN AI',
+                'FULL-STACK DEVELOPER','DATA ANALYST']
+
+PROFILE = st.sidebar.multiselect("SELECT JOB ROLE",
+                options = JOB_PROFILE)
+
+
+job_prompt = f"""Based on {PROFILE} jobs in {LOCATION}, I 
+want latest job news in using tavily, 
+try top 10 search or whatever available
+and give result like naukri theme design with
+job name, job desc, salary,
+apply link and OUTPUT must be In HTML no markdowns"""
 
 if st.button("Generate Resume"):
     with st.spinner("Agent Creating Resume..."):
