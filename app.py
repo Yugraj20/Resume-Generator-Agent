@@ -11,7 +11,7 @@ import numpy as np
 from langchain.messages import SystemMessage, HumanMessage
 from langchain.agents import create_agent
 import streamlit as st
-
+from PIL import Image
 
 
 #==============ForntEnd==============
@@ -89,7 +89,32 @@ and must show user input details
 System instructions: Only Give HTML code as output use dark theme"""
 
 final_prompt = prompt + prompt_reader()
+#================================Image Uploader================================
+#================================Upload Image================================
 
+FILE = st.sidebar.file_uploader(
+    "Choose Image File",
+    type=["jpg","jpeg","png","webp"]
+)
+
+if FILE is not None:
+    try:
+        image = Image.open(FILE)
+
+        st.sidebar.image(image,
+                         caption="Upload Image",
+                         use_container_width=True)
+        if image.mode in ("RGBA","P"):
+            image = image.convert("RGB")
+
+        base_name = os.path.splitext(FILE.name)[0]
+        save_path  = f"{base_name}.jpg"
+
+        image.save(save_path,"JPEG")
+        st.sidebar.success(f"Image Successfully Saved as `{save_path}`")
+    except Exception as e:
+        st.error(f"Error Processing Image:{e}")
+            
 # Change this when required new resume by user, pass details
 
 user_info = st.text_input("Give Your Information : ")
