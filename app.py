@@ -24,7 +24,9 @@ TAVILY_API_KEY =st.sidebar.text_input("TAVILY API Key",type='password')
 
 if not GOOGLE_API_KEY and not GROQ_API_KEY and not TAVILY_API_KEY:
     st.warning("Provide API Keys")
-
+    st.stop()
+else:
+    st.success("API Keys Loaded")
 #==============MODEL AND AGENT CODE==============
 # tool 1
 def search_latest_news_jobs(query):
