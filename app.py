@@ -23,7 +23,7 @@ GROQ_API_KEY =st.sidebar.text_input("GROQ API Key",type='password')
 TAVILY_API_KEY =st.sidebar.text_input("TAVILY API Key",type='password')
 
 if not (GOOGLE_API_KEY) and not (GROQ_API_KEY) and not (TAVILY_API_KEY):
-    st.warning("Provide API Keys")
+    st.sidebar.warning("Provide API Keys")
     st.stop()
 else:
     st.success("API Keys Loaded")
